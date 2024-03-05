@@ -1,0 +1,54 @@
+//btn + and btn -
+let btnplus = Array.from(document.getElementsByClassName("add"));
+console.log(btnplus);
+for (let i = 0; i < btnplus.length; i++) {
+  btnplus[i].addEventListener("click", function () {
+    btnplus[i].nextElementSibling.innerHTML++;
+    somme();
+  });
+}
+
+let btnminus = Array.from(document.getElementsByClassName("minus"));
+console.log(btnminus);
+for (let i = 0; i < btnminus.length; i++) {
+  btnminus[i].addEventListener("click", function () {
+    if (btnminus[i].previousElementSibling.innerHTML > 0) {
+      btnminus[i].previousElementSibling.innerHTML--;
+      somme();
+    }
+  });
+}
+
+// remove Item "Trash"
+let button_remove = Array.from(document.getElementsByClassName("fa-trash-alt"));
+for (let elms of button_remove) {
+  elms.addEventListener("click", function () {
+    elms.parentNode.remove();
+    somme();
+  });
+}
+
+// Change heart color
+let heart = Array.from(document.getElementsByClassName("fa-heart"));
+for (let elm of heart) {
+  elm.addEventListener("click", function () {
+    if (elm.style.color == "red") {
+      elm.style.color = "grey";
+    } else {
+      elm.style.color = "red";
+    }
+  });
+}
+// Total socre
+
+function somme() {
+  let qun = document.getElementsByClassName("qte");
+  let prc = document.getElementsByClassName("price");
+  let sum = 0;
+
+  for (let i = 0; i < qun.length; i++) {
+    sum += qun[i].innerHTML * prc[i].innerHTML;
+  }
+  return (document.getElementById("totalp").innerHTML =
+    "Shopping Bag total : $" + sum);
+}
